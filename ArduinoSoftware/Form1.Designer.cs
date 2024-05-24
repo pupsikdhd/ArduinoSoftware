@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
             this.FCommand = new System.Windows.Forms.TextBox();
             this.TCommand = new System.Windows.Forms.TextBox();
             this.SCommand = new System.Windows.Forms.TextBox();
@@ -38,24 +37,13 @@
             this.comboBoxComs = new System.Windows.Forms.ComboBox();
             this.PathLabel = new System.Windows.Forms.Label();
             this.OpenSetting = new System.Windows.Forms.Button();
-            this.CreateJsonBtn = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
+            this.checkArduino = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(15, 252);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Check";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FCommand
             // 
@@ -120,25 +108,14 @@
             // OpenSetting
             // 
             this.OpenSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpenSetting.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.OpenSetting.Location = new System.Drawing.Point(490, 260);
             this.OpenSetting.Name = "OpenSetting";
             this.OpenSetting.Size = new System.Drawing.Size(79, 23);
             this.OpenSetting.TabIndex = 7;
             this.OpenSetting.Text = "Settings";
-            this.OpenSetting.UseVisualStyleBackColor = true;
+            this.OpenSetting.UseVisualStyleBackColor = false;
             this.OpenSetting.Click += new System.EventHandler(this.OpenSetting_Click);
-            // 
-            // CreateJsonBtn
-            // 
-            this.CreateJsonBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CreateJsonBtn.Enabled = false;
-            this.CreateJsonBtn.Location = new System.Drawing.Point(96, 252);
-            this.CreateJsonBtn.Name = "CreateJsonBtn";
-            this.CreateJsonBtn.Size = new System.Drawing.Size(75, 23);
-            this.CreateJsonBtn.TabIndex = 8;
-            this.CreateJsonBtn.Text = "Create json";
-            this.CreateJsonBtn.UseVisualStyleBackColor = true;
-            this.CreateJsonBtn.Click += new System.EventHandler(this.CreateJsonBtn_Click);
             // 
             // notifyIcon1
             // 
@@ -172,13 +149,24 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // checkArduino
+            // 
+            this.checkArduino.Location = new System.Drawing.Point(15, 259);
+            this.checkArduino.Name = "checkArduino";
+            this.checkArduino.Size = new System.Drawing.Size(97, 23);
+            this.checkArduino.TabIndex = 10;
+            this.checkArduino.Text = "Check Arduino";
+            this.checkArduino.UseVisualStyleBackColor = true;
+            this.checkArduino.Click += new System.EventHandler(this.checkArduino_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(581, 295);
+            this.Controls.Add(this.checkArduino);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.CreateJsonBtn);
             this.Controls.Add(this.OpenSetting);
             this.Controls.Add(this.PathLabel);
             this.Controls.Add(this.comboBoxComs);
@@ -186,7 +174,6 @@
             this.Controls.Add(this.SCommand);
             this.Controls.Add(this.TCommand);
             this.Controls.Add(this.FCommand);
-            this.Controls.Add(this.button1);
             this.MinimumSize = new System.Drawing.Size(449, 334);
             this.Name = "Form1";
             this.Text = "Main";
@@ -199,8 +186,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox FCommand;
         private System.Windows.Forms.TextBox TCommand;
         private System.Windows.Forms.TextBox SCommand;
@@ -208,11 +193,11 @@
         private System.Windows.Forms.ComboBox comboBoxComs;
         private System.Windows.Forms.Label PathLabel;
         private System.Windows.Forms.Button OpenSetting;
-        private System.Windows.Forms.Button CreateJsonBtn;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button checkArduino;
     }
 }
 

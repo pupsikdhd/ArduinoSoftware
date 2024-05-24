@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -6,6 +7,7 @@ using System.IO.Ports;
 using System.Text.Json;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ArduinoSoftware
 {
@@ -26,26 +28,6 @@ namespace ArduinoSoftware
             settings.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (File.Exists(jsonPath))
-            {
-                PathLabel.Text = jsonPath;
-                return;
-            }
-            CreateJsonBtn.Enabled = true;
-            PathLabel.Text = "File not found";
-        }
-
-        private void CreateJsonBtn_Click(object sender, EventArgs e)
-        {
-            if (!File.Exists(jsonPath))
-            {
-                File.Create(jsonPath).Close();
-                CreateJsonBtn.Enabled = false;
-                button1.PerformClick();
-            }
-        }
 
         public void FormUpdateInfo()
         {
@@ -56,9 +38,16 @@ namespace ArduinoSoftware
                 FCommand.Text = personal.firstCommand;
                 SCommand.Text = personal.secondCommand;
                 TCommand.Text = personal.thirdCommand;
+                comboBoxComs.Items.Clear();
+                string[] ports = SerialPort.GetPortNames();
+                comboBoxComs.Items.AddRange(ports);
+                comboBoxComs.SelectedIndex = comboBoxComs.Items.IndexOf(personal.port);
             }
-            string[] ports = SerialPort.GetPortNames();
-            comboBoxComs.Items.AddRange(ports);
+            else
+            {
+                MessageBox.Show("There is no access to the file, check or create it in the settings","Error");
+            }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -75,7 +64,6 @@ namespace ArduinoSoftware
             {
                 rkHide.SetValue("isHide", 0);
             }
-
             notifyIcon1.BalloonTipTitle = "App";
             notifyIcon1.BalloonTipText = "Application minimized to tray";
             notifyIcon1.Text = "Arduino Software";
@@ -98,14 +86,15 @@ namespace ArduinoSoftware
                 FCommand.Text = personal.firstCommand;
                 SCommand.Text = personal.secondCommand;
                 TCommand.Text = personal.thirdCommand;
+                string[] ports = SerialPort.GetPortNames();
+                comboBoxComs.Items.AddRange(ports);
+                comboBoxComs.SelectedIndex = comboBoxComs.Items.IndexOf(personal.port);
             }
             catch
             {
                 MessageBox.Show("Error an occurred", "Error");
             }
 
-            string[] ports = SerialPort.GetPortNames();
-            comboBoxComs.Items.AddRange(ports);
         }
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -136,6 +125,9 @@ namespace ArduinoSoftware
                         case 3:
                             Process.Start("cmd", "/c " + personal.thirdCommand);
                             break;
+                        case 10:
+                            MessageBox.Show("Verification was successful");
+                            break;
                         default:
                             MessageBox.Show("Check if your device is programmed correctly.", "Command not found");
                             break;
@@ -164,12 +156,7 @@ namespace ArduinoSoftware
             };
             string jsonString = JsonSerializer.Serialize(settings);
             File.WriteAllText(jsonPath, jsonString);
-            DialogResult dr = MessageBox.Show("If you change the port, we recommend restarting the program", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (dr == DialogResult.Yes)
-            {
-                isHideProgramm = false;
-                Application.Restart();
-            }
+            restartCom();
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -205,9 +192,40 @@ namespace ArduinoSoftware
 
         private void button3_Click(object sender, EventArgs e)
         {
-            comboBoxComs.Items.Clear();
-            string[] ports = SerialPort.GetPortNames();
-            comboBoxComs.Items.AddRange(ports);
+            FormUpdateInfo();
         }
+        private void restartCom()
+        {
+            try
+            {
+                _serialPort.Close();
+                string data = File.ReadAllText(jsonPath);
+                settings personal = JsonSerializer.Deserialize<settings>(data);
+                _serialPort = new SerialPort(personal.port, 9600);
+                _serialPort.Open();
+                _serialPort.DataReceived += DataReceivedHandler;
+                MessageBox.Show("Device found successfully.","Done");
+            }
+            catch(Exception ex) 
+            {
+                DialogResult dr = MessageBox.Show("Device not detected. Try again? \n" + ex, "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dr == DialogResult.Yes) { restartCom(); return; }
+            }
+        }
+        private void checkArduino_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _serialPort.Write(1.ToString());
+            }
+            catch
+            {
+                restartCom();
+            }
+        }
+
+
+
+
     }
 }

@@ -38,7 +38,27 @@ namespace ArduinoSoftware
 
             this.Close();
         }
+        private void CheckJson()
+        {
+            if (File.Exists(jsonPath))
+            {
+                PathLabel.Text = jsonPath;
+                return;
+            }
+            CreateJsonBtn.Enabled = true;
+            CreateJsonBtn.Visible = true;
+            PathLabel.Text = "File not found";
+        }
 
+        private void CreateJsonBtn_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(jsonPath))
+            {
+                File.Create(jsonPath).Close();
+                CreateJsonBtn.Enabled = false;
+                CheckJson();
+            }
+        }
         private void Settings_Load(object sender, EventArgs e)
         {
             RegistryKey rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true) ?? Registry.CurrentUser.CreateSubKey("ArduinoSoft", true);
@@ -54,6 +74,7 @@ namespace ArduinoSoftware
             {
                 AutoStartCheckBox.Checked = true;
             }
+            CheckJson();
         }
 
         private void button2_Click(object sender, EventArgs e) => this.Close();
@@ -85,6 +106,11 @@ namespace ArduinoSoftware
             }
 
             File.Copy(jsonPath, saveFileDialog1.FileName);
+        }
+
+        private void CreateJsonBtn_Click_1(object sender, EventArgs e)
+        {
+            File.Create(jsonPath);
         }
     }
 }
