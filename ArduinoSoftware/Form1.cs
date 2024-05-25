@@ -6,6 +6,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -52,7 +53,6 @@ namespace ArduinoSoftware
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             RegistryKey rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true);
             if (rkHide == null)
             {
@@ -97,7 +97,7 @@ namespace ArduinoSoftware
 
         }
 
-        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        private async void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             new Thread(() =>
             {
@@ -114,29 +114,52 @@ namespace ArduinoSoftware
                     string data = File.ReadAllText(jsonPath);
                     settings personal = JsonSerializer.Deserialize<settings>(data);
                     int btnNumber = Convert.ToInt32(_serialPort.ReadExisting());
-                    switch (btnNumber)
-                    {
-                        case 1:
-                            Process.Start("cmd", "/c " + personal.firstCommand);
-                            break;
-                        case 2:
-                            Process.Start("cmd", "/c " + personal.secondCommand);
-                            break;
-                        case 3:
-                            Process.Start("cmd", "/c " + personal.thirdCommand);
-                            break;
-                        case 10:
-                            MessageBox.Show("Verification was successful");
-                            break;
-                        default:
-                            MessageBox.Show("Check if your device is programmed correctly.", "Command not found");
-                            break;
-                    }
+
+                        switch (btnNumber)
+                        {
+                            case 1:
+                                Process.Start("cmd", "/c " + personal.firstCommand);
+                                break;
+                            case 2:
+                                Process.Start("cmd", "/c " + personal.secondCommand);
+                                break;
+                            case 3:
+                                Process.Start("cmd", "/c " + personal.thirdCommand);
+                                break;
+                            case 10:
+                                CheckLabelPrint();
+                                break;
+                            default:
+                                MessageBox.Show("Check if your device is programmed correctly.", "Command not found");
+                                break;
+                        }
                 }
             }
             catch
             {
                 MessageBox.Show("Invalid command", "Error");
+            }
+        }
+
+        private async void CheckLabelPrint()
+        {
+            if (CheckLabel.InvokeRequired)
+            {
+                CheckLabel.Invoke(new Action(() =>
+                {
+                    CheckLabel.Text = "Verification was successful";
+                }));
+                await Task.Delay(1500);
+                CheckLabel.Invoke(new Action(() =>
+                {
+                    CheckLabel.Text = "";
+                }));
+            }
+            else
+            {
+                CheckLabel.Text = "Verification was successful";
+                await Task.Delay(1500);
+                CheckLabel.Text = "";
             }
         }
 
@@ -223,9 +246,5 @@ namespace ArduinoSoftware
                 restartCom();
             }
         }
-
-
-
-
     }
 }

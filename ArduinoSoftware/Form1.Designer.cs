@@ -42,6 +42,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
             this.checkArduino = new System.Windows.Forms.Button();
+            this.CheckLabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,12 +160,21 @@
             this.checkArduino.UseVisualStyleBackColor = true;
             this.checkArduino.Click += new System.EventHandler(this.checkArduino_Click);
             // 
+            // CheckLabel
+            // 
+            this.CheckLabel.AutoSize = true;
+            this.CheckLabel.Location = new System.Drawing.Point(118, 264);
+            this.CheckLabel.Name = "CheckLabel";
+            this.CheckLabel.Size = new System.Drawing.Size(0, 13);
+            this.CheckLabel.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(581, 295);
+            this.Controls.Add(this.CheckLabel);
             this.Controls.Add(this.checkArduino);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.OpenSetting);
@@ -198,6 +208,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button checkArduino;
+        private System.Windows.Forms.Label CheckLabel;
     }
 }
 

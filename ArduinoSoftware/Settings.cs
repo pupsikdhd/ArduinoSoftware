@@ -63,11 +63,11 @@ namespace ArduinoSoftware
         {
             RegistryKey rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true) ?? Registry.CurrentUser.CreateSubKey("ArduinoSoft", true);
             object isHideValue = rkHide.GetValue("isHide");
+            object lightOnClickValue = rkHide.GetValue("lightOnClick");
             if (isHideValue != null && isHideValue.ToString() == "1")
             {
                 HideCheckBox.Checked = true;
             }
-
             RegistryKey rkAuto = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             object cleanValue = rkAuto.GetValue("clean");
             if (cleanValue != null && cleanValue.ToString() != "0")
