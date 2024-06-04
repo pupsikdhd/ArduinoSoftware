@@ -43,7 +43,14 @@
             this.button3 = new System.Windows.Forms.Button();
             this.checkArduino = new System.Windows.Forms.Button();
             this.CheckLabel = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.CloseBtn = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // FCommand
@@ -51,9 +58,9 @@
             this.FCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FCommand.Location = new System.Drawing.Point(12, 12);
+            this.FCommand.Location = new System.Drawing.Point(6, 33);
             this.FCommand.Name = "FCommand";
-            this.FCommand.Size = new System.Drawing.Size(553, 31);
+            this.FCommand.Size = new System.Drawing.Size(558, 31);
             this.FCommand.TabIndex = 1;
             // 
             // TCommand
@@ -61,9 +68,9 @@
             this.TCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TCommand.Location = new System.Drawing.Point(12, 86);
+            this.TCommand.Location = new System.Drawing.Point(4, 107);
             this.TCommand.Name = "TCommand";
-            this.TCommand.Size = new System.Drawing.Size(553, 31);
+            this.TCommand.Size = new System.Drawing.Size(560, 31);
             this.TCommand.TabIndex = 2;
             // 
             // SCommand
@@ -71,15 +78,15 @@
             this.SCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SCommand.Location = new System.Drawing.Point(13, 49);
+            this.SCommand.Location = new System.Drawing.Point(7, 70);
             this.SCommand.Name = "SCommand";
-            this.SCommand.Size = new System.Drawing.Size(553, 31);
+            this.SCommand.Size = new System.Drawing.Size(557, 31);
             this.SCommand.TabIndex = 3;
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(12, 150);
+            this.button2.Location = new System.Drawing.Point(4, 171);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(179, 43);
             this.button2.TabIndex = 4;
@@ -91,7 +98,7 @@
             // 
             this.comboBoxComs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxComs.FormattingEnabled = true;
-            this.comboBoxComs.Location = new System.Drawing.Point(15, 123);
+            this.comboBoxComs.Location = new System.Drawing.Point(7, 144);
             this.comboBoxComs.Name = "comboBoxComs";
             this.comboBoxComs.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComs.TabIndex = 5;
@@ -108,9 +115,8 @@
             // 
             // OpenSetting
             // 
-            this.OpenSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OpenSetting.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.OpenSetting.Location = new System.Drawing.Point(490, 260);
+            this.OpenSetting.Location = new System.Drawing.Point(6, 32);
             this.OpenSetting.Name = "OpenSetting";
             this.OpenSetting.Size = new System.Drawing.Size(79, 23);
             this.OpenSetting.TabIndex = 7;
@@ -142,7 +148,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(142, 121);
+            this.button3.Location = new System.Drawing.Point(134, 142);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(67, 23);
             this.button3.TabIndex = 9;
@@ -152,7 +158,7 @@
             // 
             // checkArduino
             // 
-            this.checkArduino.Location = new System.Drawing.Point(15, 259);
+            this.checkArduino.Location = new System.Drawing.Point(6, 3);
             this.checkArduino.Name = "checkArduino";
             this.checkArduino.Size = new System.Drawing.Size(97, 23);
             this.checkArduino.TabIndex = 10;
@@ -163,33 +169,83 @@
             // CheckLabel
             // 
             this.CheckLabel.AutoSize = true;
-            this.CheckLabel.Location = new System.Drawing.Point(118, 264);
+            this.CheckLabel.Location = new System.Drawing.Point(16, 273);
             this.CheckLabel.Name = "CheckLabel";
             this.CheckLabel.Size = new System.Drawing.Size(0, 13);
             this.CheckLabel.TabIndex = 11;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 2);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(579, 268);
+            this.tabControl1.TabIndex = 12;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.FCommand);
+            this.tabPage1.Controls.Add(this.TCommand);
+            this.tabPage1.Controls.Add(this.SCommand);
+            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.comboBoxComs);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(571, 242);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Commands";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.CloseBtn);
+            this.tabPage2.Controls.Add(this.checkArduino);
+            this.tabPage2.Controls.Add(this.OpenSetting);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(571, 222);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Other";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // CloseBtn
+            // 
+            this.CloseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseBtn.Location = new System.Drawing.Point(498, 6);
+            this.CloseBtn.Name = "CloseBtn";
+            this.CloseBtn.Size = new System.Drawing.Size(65, 23);
+            this.CloseBtn.TabIndex = 12;
+            this.CloseBtn.Text = "Close";
+            this.CloseBtn.UseVisualStyleBackColor = true;
+            this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(581, 295);
+            this.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.ClientSize = new System.Drawing.Size(603, 295);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.CheckLabel);
-            this.Controls.Add(this.checkArduino);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.OpenSetting);
             this.Controls.Add(this.PathLabel);
-            this.Controls.Add(this.comboBoxComs);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.SCommand);
-            this.Controls.Add(this.TCommand);
-            this.Controls.Add(this.FCommand);
             this.MinimumSize = new System.Drawing.Size(449, 334);
             this.Name = "Form1";
             this.Text = "Main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,6 +265,10 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button checkArduino;
         private System.Windows.Forms.Label CheckLabel;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button CloseBtn;
     }
 }
 

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ArduinoSoftware
 {
-    internal class Functions
+    internal class adminFunctions
     {
         public bool IsRunningAsAdmin()
         {
