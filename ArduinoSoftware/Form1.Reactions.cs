@@ -11,7 +11,7 @@ namespace ArduinoSoftware
         {
             if (comboBoxComs.SelectedIndex.ToString() == "-1")
             {
-                MessageBox.Show("You did not specify the port", "Error");
+                StatusLabelPrint("You did not specify the port", 3000);
                 return;
             }
             settings settings = new settings
@@ -25,7 +25,11 @@ namespace ArduinoSoftware
             File.WriteAllText(jsonPath, jsonString);
             restartCom();
         }
-
+        private void OpenSetting_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.ShowDialog();
+        }
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Show();
@@ -37,8 +41,7 @@ namespace ArduinoSoftware
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isHideProgramm = false;
-            Application.Exit();
+            fullExit();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -58,10 +61,5 @@ namespace ArduinoSoftware
         }
 
 
-        private void CloseBtn_Click(object sender, EventArgs e)
-        {
-            isHideProgramm = false;
-            Application.Exit();
-        }
     }
 }

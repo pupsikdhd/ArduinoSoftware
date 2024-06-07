@@ -24,11 +24,7 @@ namespace ArduinoSoftware
             notifyIcon1.Visible = false;
         }
 
-        private void OpenSetting_Click(object sender, EventArgs e)
-        {
-            Settings settings = new Settings();
-            settings.ShowDialog();
-        }
+
 
 
 
@@ -76,18 +72,14 @@ namespace ArduinoSoftware
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            RegistryKey currentUserKey = Registry.CurrentUser;
-            RegistryKey rkHide = currentUserKey.OpenSubKey("ArduinoSoft");
-            if (rkHide.GetValue("isHide").ToString() == "1")
+
+            if (getRegIsHide())
             {
                 if (!isHideProgramm)
                     Application.Exit();
                 else
                 {
-                    e.Cancel = true;
-                    Hide();
-                    notifyIcon1.Visible = true;
-                    notifyIcon1.ShowBalloonTip(1000);
+                    hideToTray(e);
                 }
             }
         }

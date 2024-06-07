@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
@@ -24,29 +25,29 @@ namespace ArduinoSoftware
             }
             else
             {
-                CheckLabelPrint("There is no access to the file, check or create it in the settings", 3000);
+                StatusLabelPrint("There is no access to the file, check or create it in the settings", 5000);
             }
         }
 
-        private async void CheckLabelPrint(string text, int delay)
+        private async void StatusLabelPrint(string text, int delay)
         {
             if (CheckLabel.InvokeRequired)
             {
                 CheckLabel.Invoke(new Action(() =>
                 {
-                    CheckLabel.Text = text;
+                    CheckLabel.Text = MessageBoxIcon.Information + text;
                 }));
                 await Task.Delay(delay);
                 CheckLabel.Invoke(new Action(() =>
                 {
-                    CheckLabel.Text = "";
+                    CheckLabel.Text = null;
                 }));
             }
             else
             {
                 CheckLabel.Text = text;
                 await Task.Delay(delay);
-                CheckLabel.Text = "";
+                CheckLabel.Text = null;
             }
         }
 
@@ -58,7 +59,7 @@ namespace ArduinoSoftware
                 _serialPort = new SerialPort(personal.port, 9600);
                 _serialPort.Open();
                 _serialPort.DataReceived += DataReceivedHandler;
-                MessageBox.Show("Device found successfully.", "Done");
+                StatusLabelPrint("Device found successfully.", 3000);
             }
             catch (Exception ex)
             {
@@ -66,7 +67,29 @@ namespace ArduinoSoftware
                 if (dr == DialogResult.Yes) { restartCom(); return; }
             }
         }
-
+        public void fullExit()
+        {
+            isHideProgramm = false;
+            Application.Exit();
+        }
+        public void hideToTray(FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            Hide();
+            notifyIcon1.Visible = true;
+            notifyIcon1.ShowBalloonTip(1000);
+        }
+        public bool getRegIsHide()
+        {
+            RegistryKey currentUserKey = Registry.CurrentUser;
+            RegistryKey rkHide = currentUserKey.OpenSubKey("ArduinoSoft");
+            if (rkHide.GetValue("isHide").ToString() == "1") 
+            {
+                return true; 
+            }
+            return false;
+        } 
+        
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
@@ -96,10 +119,10 @@ namespace ArduinoSoftware
                             Process.Start("cmd", "/c " + personal.thirdCommand);
                             break;
                         case 10:
-                            CheckLabelPrint("Verification was successful", 1500);
+                            StatusLabelPrint("Verification was successful", 1500);
                             break;
                         default:
-                            CheckLabelPrint("Check if your device is programmed correctly.", 2000);
+                            StatusLabelPrint("Check if your device is programmed correctly.", 2000);
                             break;
                     }
                 }
