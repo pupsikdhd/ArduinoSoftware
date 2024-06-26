@@ -93,6 +93,8 @@ namespace ArduinoSoftware
                             return;
                         }
                     }
+
+                    return;
                 }
 
                 if (comboBoxComs.SelectedIndex.ToString() != "-1")
