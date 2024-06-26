@@ -35,7 +35,7 @@ namespace ArduinoSoftware
             {
                 CheckLabel.Invoke(new Action(() =>
                 {
-                    CheckLabel.Text = MessageBoxIcon.Information + text;
+                    CheckLabel.Text = text;
                 }));
                 await Task.Delay(delay);
                 CheckLabel.Invoke(new Action(() =>
@@ -59,7 +59,7 @@ namespace ArduinoSoftware
                 _serialPort = new SerialPort(personal.port, 9600);
                 _serialPort.Open();
                 _serialPort.DataReceived += DataReceivedHandler;
-                StatusLabelPrint("Device found successfully.", 3000);
+                StatusLabelPrint(" Device found successfully.", 3000);
             }
             catch (Exception ex)
             {
@@ -118,8 +118,8 @@ namespace ArduinoSoftware
                         case 3:
                             Process.Start("cmd", "/c " + personal.thirdCommand);
                             break;
-                        case 10:
-                            StatusLabelPrint("Verification was successful", 1500);
+                        case 11:
+                            StatusLabelPrint(" Device found successfully.", 3000);
                             break;
                         default:
                             StatusLabelPrint("Check if your device is programmed correctly.", 2000);

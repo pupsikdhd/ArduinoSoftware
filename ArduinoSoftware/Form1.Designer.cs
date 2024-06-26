@@ -1,4 +1,6 @@
-﻿namespace ArduinoSoftware
+﻿using customBtnTest;
+
+namespace ArduinoSoftware
 {
     partial class Form1
     {
@@ -33,15 +35,14 @@
             this.FCommand = new System.Windows.Forms.TextBox();
             this.TCommand = new System.Windows.Forms.TextBox();
             this.SCommand = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button2 = new customBtnTest.MyBtn();
             this.comboBoxComs = new System.Windows.Forms.ComboBox();
-            this.PathLabel = new System.Windows.Forms.Label();
-            this.OpenSetting = new System.Windows.Forms.Button();
+            this.OpenSetting = new customBtnTest.MyBtn();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button3 = new System.Windows.Forms.Button();
-            this.checkArduino = new System.Windows.Forms.Button();
+            this.button3 = new customBtnTest.MyBtn();
+            this.checkArduino = new customBtnTest.MyBtn();
             this.CheckLabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -78,13 +79,16 @@
             // 
             // button2
             // 
+            this.button2.alphaOnHover = ((byte)(30));
+            this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button2.BorderColorOnHover = System.Drawing.Color.White;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button2.Location = new System.Drawing.Point(12, 150);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(179, 43);
             this.button2.TabIndex = 4;
             this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBoxComs
@@ -96,25 +100,17 @@
             this.comboBoxComs.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComs.TabIndex = 5;
             // 
-            // PathLabel
-            // 
-            this.PathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.PathLabel.AutoSize = true;
-            this.PathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PathLabel.Location = new System.Drawing.Point(10, 235);
-            this.PathLabel.Name = "PathLabel";
-            this.PathLabel.Size = new System.Drawing.Size(0, 25);
-            this.PathLabel.TabIndex = 6;
-            // 
             // OpenSetting
             // 
-            this.OpenSetting.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.OpenSetting.alphaOnHover = ((byte)(30));
+            this.OpenSetting.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.OpenSetting.BorderColorOnHover = System.Drawing.Color.White;
+            this.OpenSetting.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.OpenSetting.Location = new System.Drawing.Point(512, 271);
             this.OpenSetting.Name = "OpenSetting";
             this.OpenSetting.Size = new System.Drawing.Size(79, 23);
             this.OpenSetting.TabIndex = 7;
             this.OpenSetting.Text = "Settings";
-            this.OpenSetting.UseVisualStyleBackColor = false;
             this.OpenSetting.Click += new System.EventHandler(this.OpenSetting_Click);
             // 
             // notifyIcon1
@@ -141,22 +137,28 @@
             // 
             // button3
             // 
+            this.button3.alphaOnHover = ((byte)(30));
+            this.button3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button3.BorderColorOnHover = System.Drawing.Color.White;
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button3.Location = new System.Drawing.Point(142, 121);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(67, 23);
             this.button3.TabIndex = 9;
             this.button3.Text = "Update";
-            this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // checkArduino
             // 
+            this.checkArduino.alphaOnHover = ((byte)(30));
+            this.checkArduino.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkArduino.BorderColorOnHover = System.Drawing.Color.White;
+            this.checkArduino.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.checkArduino.Location = new System.Drawing.Point(12, 271);
             this.checkArduino.Name = "checkArduino";
             this.checkArduino.Size = new System.Drawing.Size(97, 23);
             this.checkArduino.TabIndex = 10;
             this.checkArduino.Text = "Check Arduino";
-            this.checkArduino.UseVisualStyleBackColor = true;
             this.checkArduino.Click += new System.EventHandler(this.checkArduino_Click);
             // 
             // CheckLabel
@@ -165,7 +167,7 @@
             this.CheckLabel.AutoSize = true;
             this.CheckLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CheckLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CheckLabel.Location = new System.Drawing.Point(8, 240);
+            this.CheckLabel.Location = new System.Drawing.Point(12, 248);
             this.CheckLabel.Name = "CheckLabel";
             this.CheckLabel.Size = new System.Drawing.Size(0, 20);
             this.CheckLabel.TabIndex = 11;
@@ -174,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(603, 306);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkArduino);
@@ -185,7 +187,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.comboBoxComs);
             this.Controls.Add(this.CheckLabel);
-            this.Controls.Add(this.PathLabel);
             this.MinimumSize = new System.Drawing.Size(449, 334);
             this.Name = "Form1";
             this.Text = "Main";
@@ -201,15 +202,14 @@
         private System.Windows.Forms.TextBox FCommand;
         private System.Windows.Forms.TextBox TCommand;
         private System.Windows.Forms.TextBox SCommand;
-        private System.Windows.Forms.Button button2;
+        private MyBtn button2;
         private System.Windows.Forms.ComboBox comboBoxComs;
-        private System.Windows.Forms.Label PathLabel;
-        private System.Windows.Forms.Button OpenSetting;
+        private MyBtn OpenSetting;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button checkArduino;
+        private MyBtn button3;
+        private MyBtn checkArduino;
         private System.Windows.Forms.Label CheckLabel;
     }
 }
