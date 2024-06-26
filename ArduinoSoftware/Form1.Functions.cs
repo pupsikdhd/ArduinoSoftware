@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,19 +14,34 @@ namespace ArduinoSoftware
     {
         public void FormUpdateInfo()
         {
-            if (File.Exists(jsonPath))
+            if (!File.Exists(jsonPath))
             {
-                FCommand.Text = personal.firstCommand;
-                SCommand.Text = personal.secondCommand;
-                TCommand.Text = personal.thirdCommand;
-                comboBoxComs.Items.Clear();
-                string[] ports = SerialPort.GetPortNames();
-                comboBoxComs.Items.AddRange(ports);
-                comboBoxComs.SelectedIndex = comboBoxComs.Items.IndexOf(personal.port);
+                MessageBox.Show("Json file is not found. Please create it in settings", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            try
             {
-                StatusLabelPrint("There is no access to the file, check or create it in the settings", 5000);
+                string data = File.ReadAllText(jsonPath);
+                settings personal = JsonSerializer.Deserialize<settings>(data);
+                if (File.Exists(jsonPath))
+                {
+                    FCommand.Text = personal.firstCommand;
+                    SCommand.Text = personal.secondCommand;
+                    TCommand.Text = personal.thirdCommand;
+                    comboBoxComs.Items.Clear();
+                    string[] ports = SerialPort.GetPortNames();
+                    comboBoxComs.Items.AddRange(ports);
+                    comboBoxComs.SelectedIndex = comboBoxComs.Items.IndexOf(personal.port);
+                }
+                else
+                {
+                    StatusLabelPrint("There is no access to the file, check or create it in the settings", 5000);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while saving settings. More details:" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -55,16 +71,42 @@ namespace ArduinoSoftware
         {
             try
             {
-                _serialPort.Close();
-                _serialPort = new SerialPort(personal.port, 9600);
-                _serialPort.Open();
-                _serialPort.DataReceived += DataReceivedHandler;
-                StatusLabelPrint(" Device found successfully.", 3000);
+                if (File.Exists(jsonPath))
+                {
+                    string data = File.ReadAllText(jsonPath);
+                    settings personal = JsonSerializer.Deserialize<settings>(data);
+
+                    try
+                    {
+                        _serialPort.Close();
+                        _serialPort = new SerialPort(personal.port, 9600);
+                        _serialPort.Open();
+                        _serialPort.DataReceived += DataReceivedHandler;
+                        StatusLabelPrint(" Device found successfully.", 3000);
+                    }
+                    catch (Exception ex)
+                    {
+                        DialogResult dr = MessageBox.Show("Device not detected. Try again?  \n If that doesn't work, try restarting the program. \n" + ex, "Error",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dr == DialogResult.Yes)
+                        {
+                            restartCom();
+                            return;
+                        }
+                    }
+                }
+
+                if (comboBoxComs.SelectedIndex.ToString() != "-1")
+                {
+                    _serialPort.Close();
+                    _serialPort = new SerialPort(comboBoxComs.SelectedText, 9600);
+                    _serialPort.Open();
+                }
+
             }
-            catch (Exception ex)
+            catch
             {
-                DialogResult dr = MessageBox.Show("Device not detected. Try again? \n" + ex, "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (dr == DialogResult.Yes) { restartCom(); return; }
+                MessageBox.Show("The json file does not contain the required settings. \n The \"port\" setting is required","Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
         public void fullExit()
@@ -93,6 +135,8 @@ namespace ArduinoSoftware
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
+            string data = File.ReadAllText(jsonPath);
+            settings personal = JsonSerializer.Deserialize<settings>(data);
             new Thread(() =>
             {
                 Action action = () =>

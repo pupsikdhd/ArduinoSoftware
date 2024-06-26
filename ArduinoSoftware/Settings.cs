@@ -111,7 +111,9 @@ namespace ArduinoSoftware
 
         private void CreateJsonBtn_Click_1(object sender, EventArgs e)
         {
-            File.Create(jsonPath);
+            File.Create(jsonPath).Close();
+            CreateJsonBtn.Visible = false;
+            CheckJson();
         }
 
     }

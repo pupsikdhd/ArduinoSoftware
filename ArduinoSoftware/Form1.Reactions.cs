@@ -9,21 +9,37 @@ namespace ArduinoSoftware
     {
         private void button2_Click(object sender, EventArgs e)
         {
-            if (comboBoxComs.SelectedIndex.ToString() == "-1")
+            if (!File.Exists(jsonPath))
             {
-                StatusLabelPrint("You did not specify the port", 3000);
+                MessageBox.Show("Json file is not found. Please create it in settings", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            settings settings = new settings
+
+            try
             {
-                firstCommand = FCommand.Text,
-                secondCommand = SCommand.Text,
-                thirdCommand = TCommand.Text,
-                port = comboBoxComs.Items[comboBoxComs.SelectedIndex].ToString(),
-            };
-            string jsonString = JsonSerializer.Serialize(settings);
-            File.WriteAllText(jsonPath, jsonString);
-            restartCom();
+
+
+                if (comboBoxComs.SelectedIndex.ToString() == "-1")
+                {
+                    StatusLabelPrint("You did not specify the port", 3000);
+                    return;
+                }
+
+                settings settings = new settings
+                {
+                    firstCommand = FCommand.Text,
+                    secondCommand = SCommand.Text,
+                    thirdCommand = TCommand.Text,
+                    port = comboBoxComs.Items[comboBoxComs.SelectedIndex].ToString(),
+                };
+                string jsonString = JsonSerializer.Serialize(settings);
+                File.WriteAllText(jsonPath, jsonString);
+                restartCom();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An error occurred while saving settings. More details:"+ex,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void OpenSetting_Click(object sender, EventArgs e)
         {

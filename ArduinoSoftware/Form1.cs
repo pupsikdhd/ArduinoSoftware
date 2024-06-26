@@ -12,8 +12,8 @@ namespace ArduinoSoftware
         public static string jsonPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\settings.json";
         public bool isHideProgramm = true;
         private static SerialPort _serialPort;
-        static string data = File.ReadAllText(jsonPath);
-        settings personal = JsonSerializer.Deserialize<settings>(data);
+
+
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +30,10 @@ namespace ArduinoSoftware
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string[] ports = SerialPort.GetPortNames();
+            comboBoxComs.Items.AddRange(ports);
+            string data = File.ReadAllText(jsonPath);
+            settings personal = JsonSerializer.Deserialize<settings>(data);
             RegistryKey rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true);
             if (rkHide == null)
             {
@@ -60,8 +64,6 @@ namespace ArduinoSoftware
                 FCommand.Text = personal.firstCommand;
                 SCommand.Text = personal.secondCommand;
                 TCommand.Text = personal.thirdCommand;
-                string[] ports = SerialPort.GetPortNames();
-                comboBoxComs.Items.AddRange(ports);
                 comboBoxComs.SelectedIndex = comboBoxComs.Items.IndexOf(personal.port);
             }
             catch
@@ -72,15 +74,20 @@ namespace ArduinoSoftware
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-            if (getRegIsHide())
+            try
             {
-                if (!isHideProgramm)
-                    Application.Exit();
-                else
+                if (getRegIsHide())
                 {
-                    hideToTray(e);
+                    if (!isHideProgramm)
+                        Application.Exit();
+                    else
+                    {
+                        hideToTray(e);
+                    }
                 }
+            }
+            catch
+            {
             }
         }
 
