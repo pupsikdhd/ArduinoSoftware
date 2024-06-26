@@ -118,7 +118,7 @@ namespace ArduinoSoftware
                         case 3:
                             Process.Start("cmd", "/c " + personal.thirdCommand);
                             break;
-                        case 11:
+                        case 10:
                             StatusLabelPrint(" Device found successfully.", 3000);
                             break;
                         default:
