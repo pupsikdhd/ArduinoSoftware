@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
@@ -7,6 +6,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace ArduinoSoftware
 {
@@ -14,24 +14,26 @@ namespace ArduinoSoftware
     {
         public void FormUpdateInfo()
         {
+            comboBoxComs.Items.Clear();
+            var ports = SerialPort.GetPortNames();
+            comboBoxComs.Items.AddRange(ports);
             if (!File.Exists(jsonPath))
             {
-                MessageBox.Show("Json file is not found. Please create it in settings", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Json file is not found. Please create it in settings", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
             try
             {
-                string data = File.ReadAllText(jsonPath);
-                settings personal = JsonSerializer.Deserialize<settings>(data);
+                var data = File.ReadAllText(jsonPath);
+                var personal = JsonSerializer.Deserialize<settings>(data);
                 if (File.Exists(jsonPath))
                 {
                     FCommand.Text = personal.firstCommand;
                     SCommand.Text = personal.secondCommand;
                     TCommand.Text = personal.thirdCommand;
-                    comboBoxComs.Items.Clear();
-                    string[] ports = SerialPort.GetPortNames();
-                    comboBoxComs.Items.AddRange(ports);
+
                     comboBoxComs.SelectedIndex = comboBoxComs.Items.IndexOf(personal.port);
                 }
                 else
@@ -41,7 +43,8 @@ namespace ArduinoSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while saving settings. More details:" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while saving settings. More details:" + ex, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -49,15 +52,9 @@ namespace ArduinoSoftware
         {
             if (CheckLabel.InvokeRequired)
             {
-                CheckLabel.Invoke(new Action(() =>
-                {
-                    CheckLabel.Text = text;
-                }));
+                CheckLabel.Invoke(new Action(() => { CheckLabel.Text = text; }));
                 await Task.Delay(delay);
-                CheckLabel.Invoke(new Action(() =>
-                {
-                    CheckLabel.Text = null;
-                }));
+                CheckLabel.Invoke(new Action(() => { CheckLabel.Text = null; }));
             }
             else
             {
@@ -73,8 +70,8 @@ namespace ArduinoSoftware
             {
                 if (File.Exists(jsonPath))
                 {
-                    string data = File.ReadAllText(jsonPath);
-                    settings personal = JsonSerializer.Deserialize<settings>(data);
+                    var data = File.ReadAllText(jsonPath);
+                    var personal = JsonSerializer.Deserialize<settings>(data);
 
                     try
                     {
@@ -86,7 +83,9 @@ namespace ArduinoSoftware
                     }
                     catch (Exception ex)
                     {
-                        DialogResult dr = MessageBox.Show("Device not detected. Try again?  \n If that doesn't work, try restarting the program. \n" + ex, "Error",
+                        var dr = MessageBox.Show(
+                            "Device not detected. Try again?  \n If that doesn't work, try restarting the program. \n" +
+                            ex, "Error",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dr == DialogResult.Yes)
                         {
@@ -102,18 +101,21 @@ namespace ArduinoSoftware
                     _serialPort = new SerialPort(comboBoxComs.SelectedText, 9600);
                     _serialPort.Open();
                 }
-
             }
             catch
             {
-                MessageBox.Show("The json file does not contain the required settings. \n The \"port\" setting is required","Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "The json file does not contain the required settings. \n The \"port\" setting is required",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         public void fullExit()
         {
             isHideProgramm = false;
             Application.Exit();
         }
+
         public void hideToTray(FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -121,35 +123,30 @@ namespace ArduinoSoftware
             notifyIcon1.Visible = true;
             notifyIcon1.ShowBalloonTip(1000);
         }
+
         public bool getRegIsHide()
         {
-            RegistryKey currentUserKey = Registry.CurrentUser;
-            RegistryKey rkHide = currentUserKey.OpenSubKey("ArduinoSoft");
-            if (rkHide.GetValue("isHide").ToString() == "1") 
-            {
-                return true; 
-            }
+            var currentUserKey = Registry.CurrentUser;
+            var rkHide = currentUserKey.OpenSubKey("ArduinoSoft");
+            if (rkHide.GetValue("isHide").ToString() == "1") return true;
             return false;
-        } 
-        
+        }
+
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
-            string data = File.ReadAllText(jsonPath);
-            settings personal = JsonSerializer.Deserialize<settings>(data);
+            var data = File.ReadAllText(jsonPath);
+            var personal = JsonSerializer.Deserialize<settings>(data);
             new Thread(() =>
             {
-                Action action = () =>
-                {
-                    FormUpdateInfo();
-                };
+                Action action = () => { FormUpdateInfo(); };
             }).Start();
 
             try
             {
                 if (File.Exists(jsonPath))
                 {
-                    int btnNumber = Convert.ToInt32(_serialPort.ReadExisting());
+                    var btnNumber = Convert.ToInt32(_serialPort.ReadExisting());
 
                     switch (btnNumber)
                     {

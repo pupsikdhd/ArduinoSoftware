@@ -11,48 +11,49 @@ namespace ArduinoSoftware
         {
             if (!File.Exists(jsonPath))
             {
-                MessageBox.Show("Json file is not found. Please create it in settings", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Json file is not found. Please create it in settings", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return;
             }
 
             try
             {
-
-
                 if (comboBoxComs.SelectedIndex.ToString() == "-1")
                 {
                     StatusLabelPrint("You did not specify the port", 3000);
                     return;
                 }
 
-                settings settings = new settings
+                var settings = new settings
                 {
                     firstCommand = FCommand.Text,
                     secondCommand = SCommand.Text,
                     thirdCommand = TCommand.Text,
-                    port = comboBoxComs.Items[comboBoxComs.SelectedIndex].ToString(),
+                    port = comboBoxComs.Items[comboBoxComs.SelectedIndex].ToString()
                 };
-                string jsonString = JsonSerializer.Serialize(settings);
+                var jsonString = JsonSerializer.Serialize(settings);
                 File.WriteAllText(jsonPath, jsonString);
                 restartCom();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while saving settings. More details:"+ex,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while saving settings. More details:" + ex, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void OpenSetting_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
+            var settings = new Settings();
             settings.ShowDialog();
         }
+
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Show();
+            Show();
             notifyIcon1.Visible = false;
             WindowState = FormWindowState.Normal;
         }
-
 
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,6 +65,7 @@ namespace ArduinoSoftware
         {
             FormUpdateInfo();
         }
+
         private void checkArduino_Click(object sender, EventArgs e)
         {
             try
@@ -75,7 +77,5 @@ namespace ArduinoSoftware
                 restartCom();
             }
         }
-
-
     }
 }
