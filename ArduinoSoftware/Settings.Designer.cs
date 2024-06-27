@@ -48,8 +48,9 @@ namespace ArduinoSoftware
             this.button1.alphaOnHover = ((byte)(30));
             this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button1.BorderColorOnHover = System.Drawing.Color.White;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(4, 93);
+            this.button1.Location = new System.Drawing.Point(4, 86);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -59,9 +60,10 @@ namespace ArduinoSoftware
             // AutoStartCheckBox
             // 
             this.AutoStartCheckBox.AutoSize = true;
-            this.AutoStartCheckBox.Location = new System.Drawing.Point(8, 12);
+            this.AutoStartCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AutoStartCheckBox.Location = new System.Drawing.Point(4, 12);
             this.AutoStartCheckBox.Name = "AutoStartCheckBox";
-            this.AutoStartCheckBox.Size = new System.Drawing.Size(71, 17);
+            this.AutoStartCheckBox.Size = new System.Drawing.Size(76, 19);
             this.AutoStartCheckBox.TabIndex = 1;
             this.AutoStartCheckBox.Text = "Auto start";
             this.AutoStartCheckBox.UseVisualStyleBackColor = true;
@@ -69,9 +71,10 @@ namespace ArduinoSoftware
             // HideCheckBox
             // 
             this.HideCheckBox.AutoSize = true;
-            this.HideCheckBox.Location = new System.Drawing.Point(8, 35);
+            this.HideCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HideCheckBox.Location = new System.Drawing.Point(4, 37);
             this.HideCheckBox.Name = "HideCheckBox";
-            this.HideCheckBox.Size = new System.Drawing.Size(99, 17);
+            this.HideCheckBox.Size = new System.Drawing.Size(111, 19);
             this.HideCheckBox.TabIndex = 2;
             this.HideCheckBox.Text = "Hide for closing";
             this.HideCheckBox.UseVisualStyleBackColor = true;
@@ -81,8 +84,9 @@ namespace ArduinoSoftware
             this.button2.alphaOnHover = ((byte)(30));
             this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button2.BorderColorOnHover = System.Drawing.Color.White;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.Location = new System.Drawing.Point(85, 93);
+            this.button2.Location = new System.Drawing.Point(85, 86);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -96,7 +100,7 @@ namespace ArduinoSoftware
             // PathLabel
             // 
             this.PathLabel.AutoSize = true;
-            this.PathLabel.Location = new System.Drawing.Point(12, 77);
+            this.PathLabel.Location = new System.Drawing.Point(12, 64);
             this.PathLabel.Name = "PathLabel";
             this.PathLabel.Size = new System.Drawing.Size(0, 13);
             this.PathLabel.TabIndex = 8;
@@ -107,9 +111,9 @@ namespace ArduinoSoftware
             this.CreateJsonBtn.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.CreateJsonBtn.BorderColorOnHover = System.Drawing.Color.White;
             this.CreateJsonBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.CreateJsonBtn.Location = new System.Drawing.Point(391, 93);
+            this.CreateJsonBtn.Location = new System.Drawing.Point(391, 89);
             this.CreateJsonBtn.Name = "CreateJsonBtn";
-            this.CreateJsonBtn.Size = new System.Drawing.Size(75, 23);
+            this.CreateJsonBtn.Size = new System.Drawing.Size(75, 27);
             this.CreateJsonBtn.TabIndex = 7;
             this.CreateJsonBtn.Text = "Create json";
             this.CreateJsonBtn.Visible = false;
@@ -119,7 +123,7 @@ namespace ArduinoSoftware
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(407, 12);
+            this.label1.Location = new System.Drawing.Point(404, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 20);
             this.label1.TabIndex = 6;
@@ -132,7 +136,7 @@ namespace ArduinoSoftware
             this.button4.BorderColorOnHover = System.Drawing.Color.White;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button4.Location = new System.Drawing.Point(391, 64);
+            this.button4.Location = new System.Drawing.Point(391, 60);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 5;
@@ -146,7 +150,7 @@ namespace ArduinoSoftware
             this.button3.BorderColorOnHover = System.Drawing.Color.White;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button3.Location = new System.Drawing.Point(391, 35);
+            this.button3.Location = new System.Drawing.Point(391, 31);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;

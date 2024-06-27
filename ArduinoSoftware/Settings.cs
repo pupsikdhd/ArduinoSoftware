@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -8,15 +7,20 @@ namespace ArduinoSoftware
 {
     public partial class Settings : Form
     {
-        public Settings()
+        private Form1 form1;
+        public Settings(Form1 owner)
         {
             InitializeComponent();
+            form1 = owner;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         public static string jsonPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\settings.json";
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             RegistryKey rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true) ?? Registry.CurrentUser.CreateSubKey("ArduinoSoft", true);
             RegistryKey rkAuto = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             if (AutoStartCheckBox.Checked)
@@ -51,20 +55,11 @@ namespace ArduinoSoftware
             PathLabel.Text = "File not found";
         }
 
-        private void CreateJsonBtn_Click(object sender, EventArgs e)
-        {
-            if (!File.Exists(jsonPath))
-            {
-                File.Create(jsonPath).Close();
-                CreateJsonBtn.Enabled = false;
-                CheckJson();
-            }
-        }
         private void Settings_Load(object sender, EventArgs e)
         {
+            
             RegistryKey rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true) ?? Registry.CurrentUser.CreateSubKey("ArduinoSoft", true);
             object isHideValue = rkHide.GetValue("isHide");
-            object lightOnClickValue = rkHide.GetValue("lightOnClick");
             if (isHideValue != null && isHideValue.ToString() == "1")
             {
                 HideCheckBox.Checked = true;

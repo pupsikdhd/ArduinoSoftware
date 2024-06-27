@@ -103,6 +103,7 @@ namespace ArduinoSoftware
             // OpenSetting
             // 
             this.OpenSetting.alphaOnHover = ((byte)(30));
+            this.OpenSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OpenSetting.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.OpenSetting.BorderColorOnHover = System.Drawing.Color.White;
             this.OpenSetting.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -151,6 +152,7 @@ namespace ArduinoSoftware
             // checkArduino
             // 
             this.checkArduino.alphaOnHover = ((byte)(30));
+            this.checkArduino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkArduino.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.checkArduino.BorderColorOnHover = System.Drawing.Color.White;
             this.checkArduino.ForeColor = System.Drawing.SystemColors.ControlLightLight;

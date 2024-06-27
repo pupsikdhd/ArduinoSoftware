@@ -64,7 +64,7 @@ namespace ArduinoSoftware
             }
         }
 
-        private void restartCom()
+        private void restartCom(string text)
         {
             try
             {
@@ -75,11 +75,16 @@ namespace ArduinoSoftware
 
                     try
                     {
-                        _serialPort.Close();
+                        try
+                        {
+                            _serialPort.Close();
+                        }catch 
+                        {}
+
                         _serialPort = new SerialPort(personal.port, 9600);
                         _serialPort.Open();
                         _serialPort.DataReceived += DataReceivedHandler;
-                        StatusLabelPrint(" Device found successfully.", 3000);
+                        StatusLabelPrint(text, 3000);
                     }
                     catch (Exception ex)
                     {
@@ -89,7 +94,7 @@ namespace ArduinoSoftware
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dr == DialogResult.Yes)
                         {
-                            restartCom();
+                            restartCom(text);
                             return;
                         }
                     }
@@ -116,6 +121,12 @@ namespace ArduinoSoftware
         {
             isHideProgramm = false;
             Application.Exit();
+        }
+
+        public void restartApp()
+        {
+            isHideProgramm = false;
+            Application.Restart();
         }
 
         public void hideToTray(FormClosingEventArgs e)

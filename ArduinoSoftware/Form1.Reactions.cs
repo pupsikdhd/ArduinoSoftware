@@ -33,7 +33,7 @@ namespace ArduinoSoftware
                 };
                 var jsonString = JsonSerializer.Serialize(settings);
                 File.WriteAllText(jsonPath, jsonString);
-                restartCom();
+                restartCom("Saved successfully");
             }
             catch (Exception ex)
             {
@@ -44,8 +44,8 @@ namespace ArduinoSoftware
 
         private void OpenSetting_Click(object sender, EventArgs e)
         {
-            var settings = new Settings();
-            settings.ShowDialog();
+            var settings = new Settings(this);
+            settings.ShowDialog(this);
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -74,7 +74,7 @@ namespace ArduinoSoftware
             }
             catch
             {
-                restartCom();
+                restartCom(" Device found successfully.");
             }
         }
     }
