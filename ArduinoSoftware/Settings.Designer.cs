@@ -96,6 +96,7 @@ namespace ArduinoSoftware
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "\"Settings files|*.json\"";
             // 
             // PathLabel
             // 

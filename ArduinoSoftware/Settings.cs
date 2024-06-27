@@ -77,6 +77,8 @@ namespace ArduinoSoftware
 
         private void button3_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+            openFileDialog1.Title = "Select a JSON File";
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
 
