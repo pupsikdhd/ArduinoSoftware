@@ -20,6 +20,7 @@ namespace ArduinoSoftware
         {
             InitializeComponent();
 
+
             notifyIcon1.BalloonTipTitle = "App";
             notifyIcon1.BalloonTipText = "Application minimized to tray";
             notifyIcon1.Text = "Arduino Software";
@@ -61,6 +62,16 @@ namespace ArduinoSoftware
                 SCommand.Text = personal.secondCommand;
                 TCommand.Text = personal.thirdCommand;
                 comboBoxComs.SelectedIndex = comboBoxComs.Items.IndexOf(personal.port);
+
+                var args = Environment.GetCommandLineArgs();
+                if (args != null && args.Length > 1)
+                    if (args[1].ToLower() == "/hide")
+                    {
+                        Hide();
+                        ShowInTaskbar = false;
+                        notifyIcon1.Visible = true;
+                        notifyIcon1.ShowBalloonTip(1000);
+                    }
             }
             catch
             {

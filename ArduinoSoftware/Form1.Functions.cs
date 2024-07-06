@@ -131,7 +131,11 @@ namespace ArduinoSoftware
 
         public void hideToTray(FormClosingEventArgs e)
         {
-            e.Cancel = true;
+            if (e != null)
+            {
+                e.Cancel = true;
+            }
+
             Hide();
             notifyIcon1.Visible = true;
             notifyIcon1.ShowBalloonTip(1000);
