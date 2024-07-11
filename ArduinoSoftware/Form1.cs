@@ -19,8 +19,6 @@ namespace ArduinoSoftware
         public Form1()
         {
             InitializeComponent();
-
-
             notifyIcon1.BalloonTipTitle = "App";
             notifyIcon1.BalloonTipText = "Application minimized to tray";
             notifyIcon1.Text = "Arduino Software";

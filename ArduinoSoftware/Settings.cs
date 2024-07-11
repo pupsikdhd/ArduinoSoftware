@@ -25,7 +25,7 @@ namespace ArduinoSoftware
             RegistryKey rkAuto = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             if (AutoStartCheckBox.Checked)
             {
-                rkAuto.SetValue("clean", Application.ExecutablePath);
+                rkAuto.SetValue("clean", Application.ExecutablePath+" /hide");
             }
             else
             {
