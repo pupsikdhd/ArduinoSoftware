@@ -12,6 +12,7 @@ namespace ArduinoSoftware
 {
     public sealed partial class Form1 : Form
     {
+        //update data from json
         public void FormUpdateInfo()
         {
             comboBoxComs.Items.Clear();
@@ -48,6 +49,7 @@ namespace ArduinoSoftware
             }
         }
 
+        //print text
         private async void StatusLabelPrint(string text, int delay)
         {
             if (CheckLabel.InvokeRequired)
@@ -64,6 +66,9 @@ namespace ArduinoSoftware
             }
         }
 
+        //restart com port connection
+        /*the function accepts text that
+         will be output when the com port is restarted*/
         private void restartCom(string text)
         {
             try
@@ -116,19 +121,20 @@ namespace ArduinoSoftware
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        // close app
         public void fullExit()
         {
             isHideProgramm = false;
             Application.Exit();
         }
-
+        //restart app
         public void restartApp()
         {
             isHideProgramm = false;
             Application.Restart();
         }
 
+        //hide app to tray
         public void hideToTray(FormClosingEventArgs e)
         {
             if (e != null)
@@ -141,6 +147,8 @@ namespace ArduinoSoftware
             notifyIcon1.ShowBalloonTip(1000);
         }
 
+
+        //getting parameters from the registry
         public bool getRegIsHide()
         {
             var currentUserKey = Registry.CurrentUser;
@@ -149,7 +157,18 @@ namespace ArduinoSoftware
             return false;
         }
 
+        public bool getRegIsAutoRun()
+        {
+            RegistryKey rkAuto = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            object cleanValue = rkAuto.GetValue("clean");
+            if (cleanValue != null && cleanValue.ToString() != "0")
+            {
+                return true;
+            }
+            return false;
+        }
 
+        //process data from the com port
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             var data = File.ReadAllText(jsonPath);

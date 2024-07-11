@@ -35,15 +35,16 @@ namespace ArduinoSoftware
             this.FCommand = new System.Windows.Forms.TextBox();
             this.TCommand = new System.Windows.Forms.TextBox();
             this.SCommand = new System.Windows.Forms.TextBox();
-            this.button2 = new customBtnTest.MyBtn();
             this.comboBoxComs = new System.Windows.Forms.ComboBox();
-            this.OpenSetting = new customBtnTest.MyBtn();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button3 = new customBtnTest.MyBtn();
-            this.checkArduino = new customBtnTest.MyBtn();
             this.CheckLabel = new System.Windows.Forms.Label();
+            this.saveBtn = new customBtnTest.MyBtn();
+            this.checkArduino = new customBtnTest.MyBtn();
+            this.OpenSetting = new customBtnTest.MyBtn();
+            this.updateBtn = new customBtnTest.MyBtn();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,20 +78,6 @@ namespace ArduinoSoftware
             this.SCommand.Size = new System.Drawing.Size(557, 31);
             this.SCommand.TabIndex = 3;
             // 
-            // button2
-            // 
-            this.button2.alphaOnHover = ((byte)(30));
-            this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button2.BorderColorOnHover = System.Drawing.Color.White;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.Location = new System.Drawing.Point(12, 150);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(179, 43);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Save";
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // comboBoxComs
             // 
             this.comboBoxComs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -99,20 +86,6 @@ namespace ArduinoSoftware
             this.comboBoxComs.Name = "comboBoxComs";
             this.comboBoxComs.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComs.TabIndex = 5;
-            // 
-            // OpenSetting
-            // 
-            this.OpenSetting.alphaOnHover = ((byte)(30));
-            this.OpenSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpenSetting.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.OpenSetting.BorderColorOnHover = System.Drawing.Color.White;
-            this.OpenSetting.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.OpenSetting.Location = new System.Drawing.Point(512, 271);
-            this.OpenSetting.Name = "OpenSetting";
-            this.OpenSetting.Size = new System.Drawing.Size(79, 23);
-            this.OpenSetting.TabIndex = 7;
-            this.OpenSetting.Text = "Settings";
-            this.OpenSetting.Click += new System.EventHandler(this.OpenSetting_Click);
             // 
             // notifyIcon1
             // 
@@ -125,29 +98,49 @@ namespace ArduinoSoftware
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(94, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(104, 48);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.showToolStripMenuItem.Text = "Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // button3
+            // CheckLabel
             // 
-            this.button3.alphaOnHover = ((byte)(30));
-            this.button3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.BorderColorOnHover = System.Drawing.Color.White;
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button3.Location = new System.Drawing.Point(142, 121);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(67, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Update";
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.CheckLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.CheckLabel.AutoSize = true;
+            this.CheckLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CheckLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CheckLabel.Location = new System.Drawing.Point(12, 248);
+            this.CheckLabel.Name = "CheckLabel";
+            this.CheckLabel.Size = new System.Drawing.Size(0, 20);
+            this.CheckLabel.TabIndex = 11;
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.alphaOnHover = ((byte)(30));
+            this.saveBtn.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.saveBtn.BorderColorOnHover = System.Drawing.Color.White;
+            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.saveBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.saveBtn.Location = new System.Drawing.Point(12, 150);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(179, 43);
+            this.saveBtn.TabIndex = 4;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // checkArduino
             // 
@@ -163,16 +156,32 @@ namespace ArduinoSoftware
             this.checkArduino.Text = "Check Arduino";
             this.checkArduino.Click += new System.EventHandler(this.checkArduino_Click);
             // 
-            // CheckLabel
+            // OpenSetting
             // 
-            this.CheckLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CheckLabel.AutoSize = true;
-            this.CheckLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CheckLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CheckLabel.Location = new System.Drawing.Point(12, 248);
-            this.CheckLabel.Name = "CheckLabel";
-            this.CheckLabel.Size = new System.Drawing.Size(0, 20);
-            this.CheckLabel.TabIndex = 11;
+            this.OpenSetting.alphaOnHover = ((byte)(30));
+            this.OpenSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpenSetting.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.OpenSetting.BorderColorOnHover = System.Drawing.Color.White;
+            this.OpenSetting.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.OpenSetting.Location = new System.Drawing.Point(512, 271);
+            this.OpenSetting.Name = "OpenSetting";
+            this.OpenSetting.Size = new System.Drawing.Size(79, 23);
+            this.OpenSetting.TabIndex = 7;
+            this.OpenSetting.Text = "Settings";
+            this.OpenSetting.Click += new System.EventHandler(this.OpenSetting_Click);
+            // 
+            // updateBtn
+            // 
+            this.updateBtn.alphaOnHover = ((byte)(30));
+            this.updateBtn.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.updateBtn.BorderColorOnHover = System.Drawing.Color.White;
+            this.updateBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.updateBtn.Location = new System.Drawing.Point(142, 121);
+            this.updateBtn.Name = "updateBtn";
+            this.updateBtn.Size = new System.Drawing.Size(67, 23);
+            this.updateBtn.TabIndex = 9;
+            this.updateBtn.Text = "Update";
+            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 
             // Form1
             // 
@@ -180,13 +189,13 @@ namespace ArduinoSoftware
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(603, 306);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.checkArduino);
             this.Controls.Add(this.FCommand);
             this.Controls.Add(this.TCommand);
             this.Controls.Add(this.OpenSetting);
             this.Controls.Add(this.SCommand);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.updateBtn);
             this.Controls.Add(this.comboBoxComs);
             this.Controls.Add(this.CheckLabel);
             this.MinimumSize = new System.Drawing.Size(449, 334);
@@ -204,15 +213,16 @@ namespace ArduinoSoftware
         private System.Windows.Forms.TextBox FCommand;
         private System.Windows.Forms.TextBox TCommand;
         private System.Windows.Forms.TextBox SCommand;
-        private MyBtn button2;
+        private MyBtn saveBtn;
         private System.Windows.Forms.ComboBox comboBoxComs;
         private MyBtn OpenSetting;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private MyBtn button3;
+        private MyBtn updateBtn;
         private MyBtn checkArduino;
         private System.Windows.Forms.Label CheckLabel;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
     }
 }
 

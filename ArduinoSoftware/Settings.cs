@@ -58,15 +58,12 @@ namespace ArduinoSoftware
         private void Settings_Load(object sender, EventArgs e)
         {
             
-            RegistryKey rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true) ?? Registry.CurrentUser.CreateSubKey("ArduinoSoft", true);
-            object isHideValue = rkHide.GetValue("isHide");
-            if (isHideValue != null && isHideValue.ToString() == "1")
+            if (form1.getRegIsHide())
             {
                 HideCheckBox.Checked = true;
             }
-            RegistryKey rkAuto = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            object cleanValue = rkAuto.GetValue("clean");
-            if (cleanValue != null && cleanValue.ToString() != "0")
+
+            if (form1.getRegIsAutoRun())
             {
                 AutoStartCheckBox.Checked = true;
             }

@@ -7,7 +7,7 @@ namespace ArduinoSoftware
 {
     public sealed partial class Form1 : Form
     {
-        private void button2_Click(object sender, EventArgs e)
+        private void saveBtn_Click(object sender, EventArgs e)
         {
             if (!File.Exists(jsonPath))
             {
@@ -48,20 +48,30 @@ namespace ArduinoSoftware
             settings.ShowDialog(this);
         }
 
+        //notifyIcon1 and menu
+        private void showToolStripMenuItem_Click(object sender, EventArgs e) =>
+            notifyIcon1_MouseDoubleClick(null, null);
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Show();
-            notifyIcon1.Visible = false;
-            WindowState = FormWindowState.Normal;
+            if (WindowState == FormWindowState.Normal)
+            {
+                notifyIcon1.Visible = false;
+            }
+            else
+            {
+                notifyIcon1_MouseDoubleClick(null,null);
+            }
         }
-
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fullExit();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+
+
+        private void updateBtn_Click(object sender, EventArgs e)
         {
             FormUpdateInfo();
         }
@@ -77,5 +87,6 @@ namespace ArduinoSoftware
                 restartCom(" Device found successfully.");
             }
         }
+
     }
 }
