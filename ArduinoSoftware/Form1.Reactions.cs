@@ -46,6 +46,7 @@ namespace ArduinoSoftware
         {
             var settings = new Settings(this);
             settings.ShowDialog(this);
+            FormUpdateInfo();
         }
 
         //notifyIcon1 and menu
@@ -54,14 +55,6 @@ namespace ArduinoSoftware
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Show();
-            if (WindowState == FormWindowState.Normal)
-            {
-                notifyIcon1.Visible = false;
-            }
-            else
-            {
-                notifyIcon1_MouseDoubleClick(null,null);
-            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

@@ -11,7 +11,6 @@ namespace ArduinoSoftware
     {
         public static string jsonPath =
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\settings.json";
-
         private static SerialPort _serialPort;
         public bool isHideProgramm = true;
 
@@ -22,7 +21,7 @@ namespace ArduinoSoftware
             notifyIcon1.BalloonTipTitle = "App";
             notifyIcon1.BalloonTipText = "Application minimized to tray";
             notifyIcon1.Text = "Arduino Software";
-            notifyIcon1.Visible = false;
+            notifyIcon1.Visible = true;
         }
 
 
@@ -68,7 +67,6 @@ namespace ArduinoSoftware
                         Hide();
                         ShowInTaskbar = false;
                         notifyIcon1.Visible = true;
-                        notifyIcon1.ShowBalloonTip(1000);
                     }
             }
             catch
@@ -93,7 +91,6 @@ namespace ArduinoSoftware
             {
             }
         }
-
 
     }
 }

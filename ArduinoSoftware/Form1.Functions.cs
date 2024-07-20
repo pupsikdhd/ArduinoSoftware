@@ -144,7 +144,6 @@ namespace ArduinoSoftware
 
             Hide();
             notifyIcon1.Visible = true;
-            notifyIcon1.ShowBalloonTip(1000);
         }
 
 

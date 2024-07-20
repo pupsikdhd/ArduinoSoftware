@@ -7,7 +7,7 @@ namespace ArduinoSoftware
 {
     public partial class Settings : Form
     {
-        private Form1 form1;
+        private static Form1 form1;
         public Settings(Form1 owner)
         {
             InitializeComponent();
@@ -16,7 +16,7 @@ namespace ArduinoSoftware
             this.MinimizeBox = false;
         }
 
-        public static string jsonPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\settings.json";
+        public static string jsonPath = Form1.jsonPath;
 
         private void button1_Click(object sender, EventArgs e)
         {

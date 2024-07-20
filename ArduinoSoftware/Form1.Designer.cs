@@ -84,7 +84,7 @@ namespace ArduinoSoftware
             this.comboBoxComs.FormattingEnabled = true;
             this.comboBoxComs.Location = new System.Drawing.Point(15, 123);
             this.comboBoxComs.Name = "comboBoxComs";
-            this.comboBoxComs.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxComs.Size = new System.Drawing.Size(141, 21);
             this.comboBoxComs.TabIndex = 5;
             // 
             // notifyIcon1
@@ -137,7 +137,7 @@ namespace ArduinoSoftware
             this.saveBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.saveBtn.Location = new System.Drawing.Point(12, 150);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(179, 43);
+            this.saveBtn.Size = new System.Drawing.Size(144, 42);
             this.saveBtn.TabIndex = 4;
             this.saveBtn.Text = "Save";
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
@@ -161,11 +161,12 @@ namespace ArduinoSoftware
             this.OpenSetting.alphaOnHover = ((byte)(30));
             this.OpenSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OpenSetting.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.OpenSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.OpenSetting.BorderColorOnHover = System.Drawing.Color.White;
             this.OpenSetting.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.OpenSetting.Location = new System.Drawing.Point(512, 271);
+            this.OpenSetting.Location = new System.Drawing.Point(518, 271);
             this.OpenSetting.Name = "OpenSetting";
-            this.OpenSetting.Size = new System.Drawing.Size(79, 23);
+            this.OpenSetting.Size = new System.Drawing.Size(73, 23);
             this.OpenSetting.TabIndex = 7;
             this.OpenSetting.Text = "Settings";
             this.OpenSetting.Click += new System.EventHandler(this.OpenSetting_Click);
@@ -176,7 +177,7 @@ namespace ArduinoSoftware
             this.updateBtn.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.updateBtn.BorderColorOnHover = System.Drawing.Color.White;
             this.updateBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.updateBtn.Location = new System.Drawing.Point(142, 121);
+            this.updateBtn.Location = new System.Drawing.Point(162, 123);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(67, 23);
             this.updateBtn.TabIndex = 9;
