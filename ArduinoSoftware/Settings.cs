@@ -14,7 +14,7 @@ namespace ArduinoSoftware
             form1 = owner;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-        }
+        } 
 
         public static string jsonPath = Form1.jsonPath;
 
@@ -57,7 +57,7 @@ namespace ArduinoSoftware
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            
+            form1.checkRegKey();
             if (form1.getRegIsHide())
             {
                 HideCheckBox.Checked = true;

@@ -167,6 +167,18 @@ namespace ArduinoSoftware
             return false;
         }
 
+        public void checkRegKey()
+        {
+            var rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true);
+            if (rkHide == null)
+            {
+                Registry.CurrentUser.CreateSubKey("ArduinoSoft", true).Close();
+                rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true);
+            }
+
+            if (rkHide.GetValue("isHide") == null) rkHide.SetValue("isHide", 0);
+        }
+
         //process data from the com port
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {

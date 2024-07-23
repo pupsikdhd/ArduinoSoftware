@@ -29,16 +29,15 @@ namespace ArduinoSoftware
         {
             var ports = SerialPort.GetPortNames();
             comboBoxComs.Items.AddRange(ports);
+
+            if (!File.Exists(jsonPath))
+            {
+                File.Create(jsonPath).Close();
+                File.WriteAllText(jsonPath, Properties.Resources.json);
+            }
             var data = File.ReadAllText(jsonPath);
             var personal = JsonSerializer.Deserialize<settings>(data);
-            var rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true);
-            if (rkHide == null)
-            {
-                Registry.CurrentUser.CreateSubKey("ArduinoSoft", true).Close();
-                rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true);
-            }
-
-            if (rkHide.GetValue("isHide") == null) rkHide.SetValue("isHide", 0);
+            checkRegKey();
 
 
             try

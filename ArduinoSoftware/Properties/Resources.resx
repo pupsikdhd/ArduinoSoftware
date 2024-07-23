@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="json" xml:space="preserve">
+    <value>{"firstCommand":"start devenv","secondCommand":"start code","thirdCommand":"start https://www.youtube.com/","port":"COM4"}</value>
+  </data>
 </root>

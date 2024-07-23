@@ -59,5 +59,14 @@ namespace ArduinoSoftware.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на {&quot;firstCommand&quot;:&quot;start devenv&quot;,&quot;secondCommand&quot;:&quot;start code&quot;,&quot;thirdCommand&quot;:&quot;start https://www.youtube.com/&quot;,&quot;port&quot;:&quot;COM4&quot;}.
+        /// </summary>
+        internal static string json {
+            get {
+                return ResourceManager.GetString("json", resourceCulture);
+            }
+        }
     }
 }
