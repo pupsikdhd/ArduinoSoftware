@@ -22,7 +22,7 @@ namespace ArduinoSoftware
             notifyIcon1.BalloonTipText = "Application minimized to tray";
             notifyIcon1.Text = "Arduino Software";
             notifyIcon1.Visible = true;
-        }
+        } 
 
 
         private void Form1_Load(object sender, EventArgs e)
