@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -8,6 +7,7 @@ namespace ArduinoSoftware
     public partial class Settings : Form
     {
         private static Form1 form1;
+        private Reg reg = new Reg();
         public Settings(Form1 owner)
         {
             InitializeComponent();
@@ -20,26 +20,8 @@ namespace ArduinoSoftware
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            RegistryKey rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true) ?? Registry.CurrentUser.CreateSubKey("ArduinoSoft", true);
-            RegistryKey rkAuto = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (AutoStartCheckBox.Checked)
-            {
-                rkAuto.SetValue("clean", Application.ExecutablePath+" /hide");
-            }
-            else
-            {
-                rkAuto.DeleteValue("clean", false);
-            }
-
-            if (HideCheckBox.Checked)
-            {
-                rkHide.SetValue("isHide", 1);
-            }
-            else
-            {
-                rkHide.SetValue("isHide", 0);
-            }
+           reg.setRegIsHide(HideCheckBox.Checked);
+            reg.setRegIsAutoRun(AutoStartCheckBox.Checked);
 
             this.Close();
         }
@@ -57,13 +39,13 @@ namespace ArduinoSoftware
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            form1.checkRegKey();
-            if (form1.getRegIsHide())
+            reg.checkRegKey();
+            if (reg.getRegIsHide())
             {
                 HideCheckBox.Checked = true;
             }
 
-            if (form1.getRegIsAutoRun())
+            if (reg.getRegIsAutoRun())
             {
                 AutoStartCheckBox.Checked = true;
             }

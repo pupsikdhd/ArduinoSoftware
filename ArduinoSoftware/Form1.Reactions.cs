@@ -54,6 +54,7 @@ namespace ArduinoSoftware
             notifyIcon1_MouseDoubleClick(null, null);
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            this.ShowInTaskbar = true;
             Show();
         }
 

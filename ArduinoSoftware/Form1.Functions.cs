@@ -6,12 +6,42 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace ArduinoSoftware
 {
     public sealed partial class Form1 : Form
     {
+        //check args
+        private void GetArgs()
+        {
+            if (Environment.GetCommandLineArgs().Length > 1)
+            {
+                foreach (string arg in args) 
+                {
+                   
+                    if (arg.ToLower().StartsWith("/hide"))
+                    {
+                        Hide();
+                        ShowInTaskbar = false;
+                        notifyIcon1.Visible = true;
+                    }
+
+                    //если второй аргумент - путь к json
+                    if (arg.StartsWith("/json"))
+                    {
+                        string newPath = arg.Substring(6);
+                        if (File.Exists(newPath)) { jsonPath = newPath; }
+                    }
+                    if (arg.ToLower().StartsWith("/topmost"))
+                    {
+                        this.TopMost = true;
+                    }
+                }
+
+            }
+        }
+
+
         //update data from json
         public void FormUpdateInfo()
         {
@@ -83,8 +113,8 @@ namespace ArduinoSoftware
                         try
                         {
                             _serialPort.Close();
-                        }catch 
-                        {}
+                        }
+                        catch {}
 
                         _serialPort = new SerialPort(personal.port, 9600);
                         _serialPort.Open();
@@ -97,6 +127,8 @@ namespace ArduinoSoftware
                             "Device not detected. Try again?  \n If that doesn't work, try restarting the program. \n" +
                             ex, "Error",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+
                         if (dr == DialogResult.Yes)
                         {
                             restartCom(text);
@@ -143,41 +175,10 @@ namespace ArduinoSoftware
             }
 
             Hide();
+            this.ShowInTaskbar = false;
             notifyIcon1.Visible = true;
         }
 
-
-        //getting parameters from the registry
-        public bool getRegIsHide()
-        {
-            var currentUserKey = Registry.CurrentUser;
-            var rkHide = currentUserKey.OpenSubKey("ArduinoSoft");
-            if (rkHide.GetValue("isHide").ToString() == "1") return true;
-            return false;
-        }
-
-        public bool getRegIsAutoRun()
-        {
-            RegistryKey rkAuto = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            object cleanValue = rkAuto.GetValue("clean");
-            if (cleanValue != null && cleanValue.ToString() != "0")
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public void checkRegKey()
-        {
-            var rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true);
-            if (rkHide == null)
-            {
-                Registry.CurrentUser.CreateSubKey("ArduinoSoft", true).Close();
-                rkHide = Registry.CurrentUser.OpenSubKey("ArduinoSoft", true);
-            }
-
-            if (rkHide.GetValue("isHide") == null) rkHide.SetValue("isHide", 0);
-        }
 
         //process data from the com port
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)

@@ -3,7 +3,6 @@ using System.IO;
 using System.IO.Ports;
 using System.Text.Json;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace ArduinoSoftware
 {
@@ -13,7 +12,8 @@ namespace ArduinoSoftware
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\settings.json";
         private static SerialPort _serialPort;
         public bool isHideProgramm = true;
-
+        public string[] args = Environment.GetCommandLineArgs();
+        private Reg reg = new Reg();
 
         public Form1()
         {
@@ -27,6 +27,7 @@ namespace ArduinoSoftware
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            GetArgs();
             var ports = SerialPort.GetPortNames();
             comboBoxComs.Items.AddRange(ports);
 
@@ -37,7 +38,7 @@ namespace ArduinoSoftware
             }
             var data = File.ReadAllText(jsonPath);
             var personal = JsonSerializer.Deserialize<settings>(data);
-            checkRegKey();
+            reg.checkRegKey();
 
 
             try
@@ -58,15 +59,6 @@ namespace ArduinoSoftware
                 SCommand.Text = personal.secondCommand;
                 TCommand.Text = personal.thirdCommand;
                 comboBoxComs.SelectedIndex = comboBoxComs.Items.IndexOf(personal.port);
-
-                var args = Environment.GetCommandLineArgs();
-                if (args != null && args.Length > 1)
-                    if (args[1].ToLower() == "/hide")
-                    {
-                        Hide();
-                        ShowInTaskbar = false;
-                        notifyIcon1.Visible = true;
-                    }
             }
             catch
             {
@@ -78,7 +70,7 @@ namespace ArduinoSoftware
         {
             try
             {
-                if (getRegIsHide())
+                if (reg.getRegIsHide())
                 {
                     if (!isHideProgramm)
                         Application.Exit();
